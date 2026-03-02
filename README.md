@@ -1,6 +1,6 @@
 # Browser Extension JS Playground
 
-A Chrome extension demo using `@clerk/chrome-extension` with plain TypeScript. No Chrome extension frameworks (no WXT, Plasmo, CRXJS, etc.). Uses `bun build` to bundle the TypeScript source.
+A Chrome extension demo using `@clerk/chrome-extension` with plain TypeScript. No Chrome extension frameworks (no WXT, Plasmo, CRXJS, etc.). Uses `pnpm build` (esbuild under the hood) to bundle the TypeScript source.
 
 ## Project structure
 
@@ -16,7 +16,7 @@ build/
 .env                    # Your publishable key (gitignored)
 ```
 
-Static extension files (`manifest.json`, `popup.html`, `popup.css`) live directly in `build/` and are checked into git. `bun build` automatically loads `.env`, replaces `process.env.CLERK_PUBLISHABLE_KEY` at build time, and bundles `src/popup.ts` into `build/popup.js`.
+Static extension files (`manifest.json`, `popup.html`, `popup.css`) live directly in `build/` and are checked into git. The esbuild config automatically loads `.env`, replaces `process.env.CLERK_PUBLISHABLE_KEY` at build time, and bundles `src/popup.ts` into `build/popup.js`.
 
 ## Getting started
 
@@ -63,11 +63,26 @@ This playground is not a pnpm workspace member, so use `pnpm install` to install
 pnpm install --ignore-workspace
 ```
 
-The first time you install packages you will will may to approve builds. Use:
+The first time you install packages you may need to approve builds. Use:
 
 ```bash
 pnpm approve-builds --ignore-workspace
 ```
+
+> **Note:** `pnpm approve-builds` is interactive. If you need a non-interactive alternative, add the following to `package.json`. This list may need updating when dependencies change.
+>
+> ```json
+> "pnpm": {
+>   "onlyBuiltDependencies": [
+>     "@clerk/shared",
+>     "browser-tabs-lock",
+>     "bufferutil",
+>     "core-js",
+>     "esbuild",
+>     "utf-8-validate"
+>   ]
+> }
+> ```
 
 ### 5. Set up environment
 
@@ -89,7 +104,18 @@ CLERK_PUBLISHABLE_KEY=pk_test_...
 pnpm build
 ```
 
-### 7. Load the extension in Chrome
+### 7. Update `host_permissions` in the manifest
+
+Add your Clerk Frontend API domain to `host_permissions` in `build/manifest.json`. The extension needs this permission to send cookies and authenticate with Clerk. Your Frontend API domain is derived from your publishable key (e.g., `pk_test_abc...` decodes to `your-app-42.clerk.accounts.dev`):
+
+```json
+"host_permissions": [
+  "http://localhost/*",
+  "https://your-app-42.clerk.accounts.dev/*"
+]
+```
+
+### 8. Load the extension in Chrome
 
 1. Open `chrome://extensions/`
 2. Enable **Developer mode** (top right)
