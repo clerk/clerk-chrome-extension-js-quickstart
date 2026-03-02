@@ -19,7 +19,7 @@ function render() {
 
     const info = document.createElement('div');
     const labelSpan = document.createElement('p');
-    labelSpan.textContent = 'Session JWT'
+    labelSpan.textContent = 'Session ID'
     const valueSpan = document.createElement('p');
     valueSpan.textContent = clerk.session?.id ?? ''
     info.appendChild(labelSpan);
@@ -56,7 +56,6 @@ clerk
     allowedRedirectProtocols: ['chrome-extension:'],
   })
   .then(() => {
-    console.log('working')
     clerk.addListener(render);
     render();
   });
