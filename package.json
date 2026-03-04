@@ -9,12 +9,12 @@
     "build": "node esbuild.config.mjs",
     "dev": "node esbuild.config.mjs --watch"
   },
-  "dependencies": {
-    "@clerk/chrome-extension": "3.0.0-snapshot.v20260226220202"
-  },
   "devDependencies": {
     "@types/chrome": "^0.1.12",
     "esbuild": "^0.25.0",
     "typescript": "5.8.3"
+  },
+  "dependencies": {
+    "@clerk/chrome-extension": "^3.0.1"
   }
 }
