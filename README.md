@@ -17,8 +17,8 @@
   <a href="https://discord.com/invite/b5rXHjAg7A">
     <img alt="Discord" src="https://img.shields.io/discord/856971667393609759?color=7389D8&label&logo=discord&logoColor=ffffff" />
   </a>
-  <a href="https://twitter.com/clerkdev">
-    <img alt="Twitter" src="https://img.shields.io/twitter/url.svg?label=%40clerkdev&style=social&url=https%3A%2F%2Ftwitter.com%2Fclerkdev" />
+  <a href="https://x.com/clerk">
+    <img alt="Follow Clerk on X" src="https://img.shields.io/twitter/url.svg?label=%40clerkdev&style=social&url=https%3A%2F%2Ftwitter.com%2Fclerkdev" />
   </a>
   <br />
   <br />
@@ -27,7 +27,7 @@
 
 ## Introduction
 
-Clerk is a developer-first authentication and user management solution. It provides pre-built React components and hooks for sign-in, sign-up, user profile, and organization management. Clerk is designed to be easy to use and customize, and can be dropped into any Chrome Extension application.
+Clerk is a developer-first authentication and user management solution.It provides pre-built UI components and APIs for sign-in, sign-up, user profile, and organization management. Clerk is designed to be easy to use and customize, and can be dropped into any Chrome Extension application.
 
 This is a Chrome extension demo using `@clerk/chrome-extension` with plain TypeScript. No Chrome extension frameworks (no WXT, Plasmo, CRXJS, etc.). Uses `pnpm build` (esbuild under the hood) to bundle the TypeScript source.
 
@@ -49,13 +49,14 @@ build/
 
 Static extension files (`manifest.json`, `popup.html`, `popup.css`) live directly in `build/` and are checked into git. The esbuild config automatically loads `.env`, replaces `process.env.CLERK_PUBLISHABLE_KEY` at build time, and bundles `src/popup.ts` into `build/popup.js`.
 
-> \[!IMPORTANT]
+> [!IMPORTANT]
 > This setup allows for the simplest example for this quickstart. For developing an extension, moving `manifest.json` and `popup.css` out of `build/` to `src/` or another location and then creating/copying/building these files during `pnpm dev` and `pnpm build` is likely preferred. Please don't take the initial project structure as advice on organizing your project.
 
 ## Running the template
 
 ```bash
 git clone https://github.com/clerk/clerk-chrome-extension-js-quickstart
+cd clerk-chrome-extension-js-quickstart
 ```
 
 To run the example locally, you need to:
@@ -64,7 +65,7 @@ To run the example locally, you need to:
 
 2. Go to the [Clerk dashboard](https://dashboard.clerk.com?utm_source=readme\&utm_medium=owned\&utm_campaign=chrome-extension\&utm_content=10-24-2023\&utm_term=clerk-chrome-extension-quickstart) and create an application.
 
-3. Set the required Clerk environment variable as shown in [the example `.env` file](./.env.example).
+3. Copy [`.env.example`](./.env.example) to `.env` file, then set the required Clerk environment variables.
 
 4. `pnpm install` the required dependencies.
 
@@ -98,7 +99,7 @@ To run the example locally, you need to:
    ]
    ```
 
-6. `pnpm dev` to launch the development server.
+6. `pnpm dev` to start the file watcher.
 
 7. Load the extension in Chrome:
    1. Open `chrome://extensions/`
@@ -122,4 +123,4 @@ Feel free to create a support thread on our [Discord](https://clerk.com/discord)
 
 You can discuss ideas, ask questions, and meet others from the community in our [Discord](https://discord.com/invite/b5rXHjAg7A).
 
-If you prefer, you can also find support through our [Twitter](https://twitter.com/ClerkDev), or you can [email](mailto:support@clerk.dev) us!
+If you prefer, you can also find support through our [X account](https://x.com/clerk), or you can [email](mailto:support@clerk.dev) us!
