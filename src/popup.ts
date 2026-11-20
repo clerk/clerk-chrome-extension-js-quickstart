@@ -54,6 +54,14 @@ clerk
     signInForceRedirectUrl: POPUP_URL,
     signUpForceRedirectUrl: POPUP_URL,
     allowedRedirectProtocols: ['chrome-extension:'],
+    // OAuth and SAML can't complete in a popup, so hide the social buttons.
+    // To support them, use a sync host: https://clerk.com/docs/guides/sessions/sync-host
+    appearance: {
+      elements: {
+        socialButtonsRoot: { display: 'none' },
+        dividerRow: { display: 'none' },
+      },
+    },
   })
   .then(() => {
     clerk.addListener(render);

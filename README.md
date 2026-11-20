@@ -63,32 +63,13 @@ To run the example locally, you need to:
 
 1. Sign up for a Clerk account at [https://clerk.com](https://dashboard.clerk.com/sign-up?utm_source=readme\&utm_medium=owned\&utm_campaign=chrome-extension\&utm_content=10-24-2023\&utm_term=clerk-chrome-extension-quickstart).
 
-2. Go to the [Clerk dashboard](https://dashboard.clerk.com?utm_source=readme\&utm_medium=owned\&utm_campaign=chrome-extension\&utm_content=10-24-2023\&utm_term=clerk-chrome-extension-quickstart) and create an application.
+2. Go to the [Clerk dashboard](https://dashboard.clerk.com?utm_source=readme\&utm_medium=owned\&utm_campaign=chrome-extension\&utm_content=10-24-2023\&utm_term=clerk-chrome-extension-quickstart) and create an application. Then:
+   1. [Enable the Native API](https://clerk.com/docs/getting-started/quickstart/chrome-extension-js#enable-native-api) on the **Native applications** page.
+   2. Turn off **Challenge suspicious sign-ups** (or **Bot sign-up protection**, on older applications) on the **Protections** page. Bot protection loads its CAPTCHA from a remote source, and Chrome Extensions can't load remotely hosted code.
 
 3. Copy [`.env.example`](./.env.example) to `.env` file, then set the required Clerk environment variables.
 
-4. `pnpm install` the required dependencies.
-
-   The first time you install packages you may need to approve builds. Use:
-
-   ```bash
-   pnpm approve-builds
-   ```
-
-   > **Note:** `pnpm approve-builds` is interactive. If you need a non-interactive alternative, add the following to `package.json`. This list may need updating when dependencies change.
-   >
-   > ```json
-   > "pnpm": {
-   >   "onlyBuiltDependencies": [
-   >     "@clerk/shared",
-   >     "browser-tabs-lock",
-   >     "bufferutil",
-   >     "core-js",
-   >     "esbuild",
-   >     "utf-8-validate"
-   >   ]
-   > }
-   > ```
+4. `pnpm install` the required dependencies. The repo pins pnpm 11, and `pnpm-workspace.yaml` already skips the build scripts that none of the dependencies need.
 
 5. Update `host_permissions` in `build/manifest.json`. Add your Clerk Frontend API domain so the extension can send cookies and authenticate with Clerk. You can get your Frontend API URL from the [API Keys](https://dashboard.clerk.com/~/api-keys) section of the [Clerk Dashboard](https://dashboard.clerk.com/).
 
